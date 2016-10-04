@@ -1,4 +1,4 @@
-# riotjs
+# Implementation of RiotJS + RiotControl + Pouchdb
 
 ## Get the web app
 
