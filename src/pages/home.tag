@@ -1,0 +1,29 @@
+import { addCommas } from '../app.js';
+
+<home>
+  <div class="container home">
+    <div class="row">
+      <div class="twelve columns">
+        <h1>Welcome!</h1>
+        <p>Here you will learn about:</p>
+        <ul>
+          <li>RiotJS</li>
+          <li>Riot Control</li>
+          <li>PouchDB</li>
+        </ul>
+        <br/>
+        <p><a href="#products">Jump to products &raquo;</a></p>
+        <hr>
+        <small><a href="https://github.com/klanjabrik/riotjs">https://github.com/klanjabrik/riotjs</a></small>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    this.on('mount', () => {
+      console.log("Home mounted")
+    });
+
+
+  </script>
+</home>

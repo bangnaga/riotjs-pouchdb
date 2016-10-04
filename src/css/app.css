@@ -1,0 +1,219 @@
+html, html * {
+  font-family: robotoregular;
+}
+
+html, body {
+  font-size: 95%;
+  background-color: white;
+}
+
+small {
+  color: #666;
+  font-size: 11px;
+}
+
+small.hint {
+  font-style: italic;
+}
+
+#home {
+  display: inline-block;
+}
+
+.pagination {
+  height: 42px;
+  margin: 21px 0;
+}
+.pagination ul {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  margin-left: 0;
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.pagination li {
+  display: inline;
+}
+.pagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 40px;
+  text-decoration: none;
+  border: 1px solid #cccccc;
+  border-left-width: 0;
+}
+.pagination a:hover,
+.pagination .active a {
+  background-color: #efefef;
+}
+.pagination .active a {
+  color: #999999;
+  cursor: default;
+}
+.pagination .disabled a,
+.pagination .disabled a:hover {
+  color: #999999;
+  background-color: transparent;
+  cursor: default;
+}
+.pagination li:first-child a {
+  border-left-width: 1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.pagination li:last-child a {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.pagination-centered {
+  text-align: center;
+}
+.pagination-right {
+  text-align: right;
+}
+
+.container {
+  background-color: white;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin:15px auto 10px;
+}
+.container.products, .container.home {
+  min-width: 500px !important;
+  width: 500px !important;
+  padding: 30px;
+}
+
+.container.products h3 {
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 5px;
+}
+a {
+  text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+}
+
+ul, li {
+  margin-bottom: 0.1rem;
+}
+
+hr {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    border-width: 0px;
+    border-top: 1px solid #E1E1E1;
+}
+button.button {
+  background-color: white;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    /*-moz-binding: url('assets/xml/ellipsis.xml#ellipsis');*/
+}
+
+nav.primary {
+    background-color: rgba(0,0,0,0.5);
+    color: #efefef;
+    padding: 5px 20px;
+    height: 40px;
+    margin:0 auto;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    min-width: 500px !important;
+}
+
+nav.primary a {
+  color: #efefef;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+nav.primary .shop-name {
+  font-size: 25px;
+  margin-top: -2px;
+}
+
+
+input[type=number], input[type=date], input[type=search], input[type=text], input[type=tel], input[type=url], input[type=password], input[type=email], select, textarea,
+input[type=search], input[type=text], input[type=tel], input[type=url], input[type=password], input[type=email], select:not([size]), textarea:not([rows]) {
+  height: 2rem;
+  margin-bottom:0;
+}
+
+
+
+input[type=text], input[type=number], textarea, button {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+ 
+input[type=text]:focus, input[type=number]:focus, textarea:focus, button:focus {
+  box-shadow: 0 0 15px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+
+/* PRODUCTS */
+.product-item {
+  margin:0 0 20px;
+  /*border-top: 1px solid #efefef;*/
+  padding-top: 10px;
+}
+
+.product-item .row {
+  margin: 10px 0;
+}
+
+.product-item-name label {
+  margin-top: 8px;
+  border-bottom: 1px solid #efefef
+}
+
+.product-item-price a{
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+/* PRELOADER */
+.preloader {
+   width:25px;
+   height:25px;
+   display:inline-block;
+   padding:0px;
+   border-radius:100%;
+   border:3px solid;
+   border-top-color:rgba(255,255,255, 0.75);
+   border-bottom-color:rgba(255,255,255, 0.75);
+   border-left-color:rgba(255,255,255, 0.25);
+   border-right-color:rgba(255,255,255, 0.25);
+   -webkit-animation: preloader 0.8s ease-in-out infinite alternate;
+   animation: preloader 0.8s ease-in-out infinite alternate;
+}
+@keyframes preloader {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+}
+@-webkit-keyframes preloader {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(360deg);}
+}
