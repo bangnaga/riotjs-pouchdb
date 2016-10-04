@@ -3,7 +3,7 @@
 ## Get the web app
 
 ```
-$ git clone git@github.com:klanjabrik/riotjs.git && cd riotjs
+$ git clone git@github.com:klanjabrik/riotjs-pouchdb.git && cd riotjs-pouchdb
 ```
 
 ## Installation
