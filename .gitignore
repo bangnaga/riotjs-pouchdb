@@ -4,7 +4,6 @@
 ### SambalKentang ###
 node_modules
 *.log
-build
 html
 
 ### macOS ###
