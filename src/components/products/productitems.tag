@@ -36,7 +36,7 @@ import './productitem.tag';
 
     this.on('mount', () => {
       if(!q.page) q.page = 1
-      document.getElementById('preloader').style = "display:visible"
+      document.getElementById('preloader').style.display = "visible"
       riot.control.trigger(riot.EVT.productLoadItems, {page: q.page})
     });
 
@@ -46,7 +46,8 @@ import './productitem.tag';
       this.countItems = _.map(array, function (value, key) {
         return {id: (key+1), done: (q.page == (key+1) ? true: false)}
       })
-      document.getElementById('preloader').style = "display:none"
+      // document.getElementById('preloader').style = "display:none"
+      document.getElementById('preloader').style.display = "none"
       this.update()
     });
 
