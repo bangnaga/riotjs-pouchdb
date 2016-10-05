@@ -1,13 +1,13 @@
 import { addCommas } from '../../app.js';
 
 <addproduct>
-  <form onsubmit="{save}" id='addProductForm' style="margin-bottom:0px">
+  <form id='addProductForm' style="margin-bottom:0px">
     <div class="eight columns">
-        <input type="text" name="item" class="u-full-width {this.item_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill product name" oninput="{oninputitem}">
+        <input type="text" name="item" class="u-full-width {this.item_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill product name" oninput="{oninputitem}" onkeyup="{save}">
         <small class="hint">*Press ⏎ (enter/return) to add new product</small>
     </div>
     <div class="four columns">
-        <input type="text" id="price" name="price" class="u-full-width u-text-right {this.price_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill the price" oninput="{oninputprice}">
+        <input type="text" id="price" name="price" class="u-full-width u-text-right {this.price_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill the price" oninput="{oninputprice}" onkeyup="{save}">
         <input type="submit" value="Add" class="button" style="display:none">
     </div>
   </form>
@@ -15,6 +15,7 @@ import { addCommas } from '../../app.js';
 
   <script>
     var self = this;
+    var ENTER_KEY = 13;
     this.item_error = true
     this.price_error = true
     this.price_ = 0
@@ -49,19 +50,21 @@ import { addCommas } from '../../app.js';
 
     this.save = (e) => {
       var prize_ = parseFloat(this.price_)
-      if (this.item.value && (prize_ > 0 || !isNaN(prize_))) {
-        var item = {
-          title: this.item.value,
-          price: prize_,
-          stock: 0
-        }
+      if (e.which === ENTER_KEY) {
+        if (this.item.value && (prize_ > 0 || !isNaN(prize_))) {
+          var item = {
+            title: this.item.value,
+            price: prize_,
+            stock: 0
+          }
 
-        if(this.is_edit) {
-          item['_id'] = this.item.idvalue
-        }
+          if(this.is_edit) {
+            item['_id'] = this.item.idvalue
+          }
 
-        riot.control.trigger(riot.EVT.productSaveItem, item)
-        reset()
+          riot.control.trigger(riot.EVT.productSaveItem, item)
+          reset()
+        }
       }
       return false
     };
