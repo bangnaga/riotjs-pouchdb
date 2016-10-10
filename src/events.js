@@ -19,5 +19,10 @@ riot.EVT = {
 
 /* DB CONFIGURATION */
 riot.db = new PouchDB('riotpouch')
-riot.pageSize = 2
+// riot.db.destroy().then(function () {
+//   // database destroyed
+// }).catch(function (err) {
+//   // error occurred
+// })
+riot.pageSize = 10
 riot.offset = riot.pageSize

@@ -24,10 +24,10 @@ module.exports = {
   ],
   module: {
     preLoaders: [
-      { test: /\.tag$/, exclude: /node_modules/, loader: 'riotjs-loader', query: { type: 'es6' } }
+      { test: /\.tag.html$/, exclude: /node_modules/, loader: 'riotjs-loader', query: { type: 'es6' } }
     ],
     loaders: [
-      { test: /\.js|\.tag$/, 
+      { test: /\.js|\.tag.html$/, 
         exclude: /node_modules/, 
         include: /src/, 
         loader: 'babel-loader', 

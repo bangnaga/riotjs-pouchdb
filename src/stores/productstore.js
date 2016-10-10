@@ -99,15 +99,50 @@ class ProductStore{
     let productSearchItem = (text) => {
       var s = text.text;
       var regexp = new RegExp(s, 'i'); // Case Insensitive
-      this.db.find({
-        selector: {
-            type: "item",
-            title: {$regex: regexp}
+      // this.db.find({
+      //   selector: {
+      //       type: "item",
+      //       title: {$regex: regexp}
+      //     }
+      // }).then(function (result) {
+      //   console.log(result)
+      //   self.trigger(riot.EVT.productSearchItemSuccess, result.docs);
+      // }).catch(function (err) {
+      //   console.log(err);
+      // });
+      self.db.createIndex({
+           index: {
+            fields: ['title', 'type'],
+            name: 'mysearchproductindex',
+            ddoc: 'mysearchproductdoc',
+            type: 'json',
           }
-      }).then(function (result) {
-        self.trigger(riot.EVT.productSearchItemSuccess, result.docs);
-      }).catch(function (err) {
-        console.log(err);
+      }).then(function() {
+          return self.db.find({
+              selector: {'title': {$regex: regexp}, 'type': 'item'},
+              fields: ['title', 'type', 'created', 'price', '_id'],
+              // sort: [{'title': 'asc'}],
+              limit: self.pageSize, 
+              // skip: self.offset, 
+              include_docs : true
+          }).then(function (result) {
+            self.trigger(riot.EVT.productSearchItemSuccess, result.docs);
+          }).catch(function (err) {
+            console.log(err);
+          });
+      }).then(function () {
+        return self.db.getIndexes().then(function (result) {
+          result.indexes.forEach(function (value, i) {
+            if(value.name == "mysearchproductindex") {
+              self.db.deleteIndex({
+                "name": "mysearchproductindex",
+                "ddoc": value.ddoc,
+              })  
+            }
+          });
+        }).catch(function (err) {
+          // ouch, an error
+        });
       });
     }
 
@@ -140,7 +175,7 @@ class ProductStore{
         type: 'item',
         created: createdOn
       };
-      
+
       if(self.edit_id) {
         productUpdateTodo(item);
       } else {

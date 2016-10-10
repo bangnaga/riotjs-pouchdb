@@ -1,5 +1,5 @@
-import '../components/products/addproduct.tag';
-import '../components/products/productitems.tag';
+import '../components/products/addproduct.tag.html';
+import '../components/products/productitems.tag.html';
 
 <products>
   <div class="container products">
@@ -20,7 +20,10 @@ import '../components/products/productitems.tag';
   </div>
 
   <script>
-    this.on('mount', () => {
+
+    var tag = this;
+    
+    tag.on('mount', () => {
       console.log("Products mounted")
     });
   </script>

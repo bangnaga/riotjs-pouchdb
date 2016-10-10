@@ -20,7 +20,10 @@ import { addCommas } from '../app.js';
   </div>
 
   <script>
-    this.on('mount', () => {
+
+    var tag = this;
+    
+    tag.on('mount', () => {
       console.log("Home mounted")
     });
 

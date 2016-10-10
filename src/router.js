@@ -1,5 +1,5 @@
-import './pages/home.tag'
-import './pages/products.tag'
+import './pages/home.tag.html'
+import './pages/products.tag.html'
 
 
 // we need this to easily check the current route from every component 

@@ -12,47 +12,47 @@ import { addCommas } from '../../app.js';
       <a href="#{this._id}" onclick={remove}>[x]</a>
   </div>
   <script>
-    var self = this;
-    this.price_single_ = String(this.price).replace(".", "")
-    this.prize_ = parseFloat(this.price_single_)
-    self.removed = false
-    self.isUpdated = false
+    var tag = this;
+    tag.price_single_ = String(tag.price).replace(".", "")
+    tag.prize_ = parseFloat(tag.price_single_)
+    tag.removed = false
+    tag.isUpdated = false
 
-    this.on('update', () => {
-      this.price_update_ = addCommas(this.price_single_)
+    tag.on('update', () => {
+      tag.price_update_ = addCommas(tag.price_single_)
     });
 
-    this.oninputprice_single = () => {
-      var prize__ = parseFloat(this.price_single.value)
+    tag.oninputprice_single = () => {
+      var prize__ = parseFloat(tag.price_single.value)
       if(prize__ > 0 || !isNaN(prize__)) {
-        this.price_error = false
+        tag.price_error = false
       } else {
-        this.price_error = true
+        tag.price_error = true
       }
-      this.price_single_ = parseFloat(this.price_single.value.replace(".", ""))
-      this.price_single.value=addCommas(this.price_single.value.replace(/[^0-9-]/g,''))
+      tag.price_single_ = parseFloat(tag.price_single.value.replace(".", ""))
+      tag.price_single.value=addCommas(tag.price_single.value.replace(/[^0-9-]/g,''))
     };
 
-    this.edit = (e) => {
+    tag.edit = (e) => {
       if(e.which == 13) { // escape
-        var prize_ = parseFloat(this.price_single_)
-        if (this.item_single.value && (prize_ > 0 || !isNaN(prize_))) {
+        var prize_ = parseFloat(tag.price_single_)
+        if (tag.item_single.value && (prize_ > 0 || !isNaN(prize_))) {
           var item = {
             _id: opts._id,
-            title: this.item_single.value,
+            title: tag.item_single.value,
             price: prize_,
             stock: 0,
-            created: opts.created
+            created: tag.created
           }
           riot.control.trigger(riot.EVT.productSaveItem, item)
         }
       }
     };
 
-    this.remove = (e) => {
-      var r = confirm("Remove \""+this.title+"\" ?");
+    tag.remove = (e) => {
+      var r = confirm("Remove \""+tag.title+"\" ?");
       if (r == true) {
-          var opts = {_id: this._id}
+          var opts = {_id: tag._id}
           riot.control.trigger(riot.EVT.productRemoveItem, opts)
       } else {
           return false;

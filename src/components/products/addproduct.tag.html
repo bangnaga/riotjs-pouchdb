@@ -1,0 +1,102 @@
+import { addCommas } from '../../app.js';
+
+<addproduct>
+  <form id='addProductForm' style="margin-bottom:0px">
+    <div class="eight columns">
+        <input type="text" name="item" class="u-full-width {tag.item_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill product name" oninput="{oninputitem}" onkeyup="{save}" autofocus="true">
+        <small class="hint">*Press ⏎ (enter/return) to add new product</small>
+    </div>
+    <div class="four columns">
+        <input type="text" id="price" name="price" class="u-full-width u-text-right {this.price_error ? 'has-error' : 'has-success'}" value="" placeholder="Fill the price" oninput="{oninputprice}" onkeyup="{save}">
+    </div>
+  </form>
+   
+
+  <script>
+    var tag = this;
+    var ENTER_KEY = 13;
+    tag.item_error = true
+    tag.price_error = true
+    tag.price_ = 0
+
+    let reset = () => {
+      tag.item.value = ''
+      tag.price.value = '0'
+      tag.id_edit = false
+      tag.item.disabled = false
+      tag.item.focus()
+      tag.update()
+    };
+
+    tag.oninputitem = () => {
+      if(tag.item.value != "") {
+        tag.item_error = false
+      } else {
+        tag.item_error = true
+      }
+    };
+
+    tag.oninputprice = () => {
+      var prize__ = parseFloat(tag.price.value)
+      if(prize__ > 0 || !isNaN(prize__)) {
+        tag.price_error = false
+      } else {
+        tag.price_error = true
+      }
+      tag.price_ = parseFloat(tag.price.value.replace(".", ""))
+      tag.price.value=addCommas(tag.price.value.replace(/[^0-9-]/g,''))
+    };
+
+    tag.save = (e) => {
+      var prize_ = parseFloat(tag.price_)
+      if (e.which === ENTER_KEY) {
+        if (tag.item.value && (prize_ > 0 && !isNaN(prize_))) {
+          var item = {
+            title: tag.item.value,
+            price: prize_,
+            stock: 0
+          }
+
+          if(tag.is_edit) {
+            item['_id'] = tag.item.idvalue
+          }
+
+          riot.control.trigger(riot.EVT.productSaveItem, item)
+          reset()
+        } else {
+          console.log(tag.price.value)
+          if (tag.item.value == "") {
+            alerty.toasts(
+              "ERROR: Product name is mandatory!",
+              { place: 'top', bgColor: 'black', time: 2500 }
+            )
+            tag.item.focus()
+          } else if (prize_ <= 0 || isNaN(prize_)) {
+            alerty.toasts(
+              "ERROR: Fill the price!",
+              { place: 'top', bgColor: 'black', time: 2500 }
+            )
+            tag.price.focus()
+          }
+        }
+      }
+      return false
+    };
+
+    tag.cancel = (e) => {
+      reset()
+    };
+
+    riot.control.on(riot.EVT.productEditItemOn, item => {
+      tag.is_edit = true
+      tag.item.value = item.title
+      tag.item.disabled = true
+      tag.item.idvalue = item._id
+      tag.price.value = item.price
+      tag.stock.value = item.stock
+      tag.item.focus()
+      tag.update()
+    });
+
+  </script>
+</addproduct>
